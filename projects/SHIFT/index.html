@@ -2,78 +2,395 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SHIFT — Project Page</title>
-  <meta name="description" content="Project page for SHIFT." />
-  <link rel="stylesheet" href="static/css/project.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHIFT — Motion Alignment in Video Diffusion Models</title>
+  <meta name="description" content="SHIFT: Smooth Hybrid Fine-Tuning for motion alignment in video diffusion models. ECCV 2026." />
+  <meta property="og:title" content="SHIFT — Motion Alignment in Video Diffusion Models" />
+  <meta property="og:description" content="Pixel-motion rewards and Smooth Hybrid Fine-Tuning for restoring motion fidelity after video diffusion post-training." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
 </head>
 <body>
-  <div class="container">
-
-    <!-- ===== Title / Authors ===== -->
-    <section class="hero">
-      <h1>SHIFT: TODO — Full Paper Title Here</h1>
-      <p class="subtitle">TODO Venue / Year</p>
-      <p class="authors">
-        <a href="#"><strong>Xi Ye</strong></a><sup>1</sup>,
-        <a href="#">Coauthor A</a><sup>1</sup>,
-        <a href="#">Coauthor B</a><sup>2</sup>
-      </p>
-      <p class="affil"><sup>1</sup>Affiliation One &nbsp;&nbsp; <sup>2</sup>Affiliation Two</p>
-
-      <!-- ===== Button row (fill href when links are ready) ===== -->
-      <div class="buttons">
-        <a href="#">📄 Paper</a>
-        <a href="#">📑 arXiv</a>
-        <a href="#">💻 Code</a>
-        <a href="#">🎬 Video</a>
-      </div>
-      <p style="margin-top:16px;"><a href="../../">← Back to homepage</a></p>
-    </section>
-
-    <!-- ===== Teaser ===== -->
-    <div class="teaser">
-      <img src="static/images/teaser.svg" alt="SHIFT teaser figure" />
-      <p class="caption">TODO: One-line caption describing the teaser figure.</p>
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="nav-brand" href="#top">SHIFT</a>
+      <nav class="nav-links" aria-label="Section">
+        <a href="../../">Home</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#bibtex-section">BibTeX</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- ===== Abstract ===== -->
-    <section class="section abstract">
-      <h2>Abstract</h2>
-      <p>
-        TODO: Paste your abstract here. Keep it to a single paragraph that conveys
-        the problem, the key idea, and the main result.
-      </p>
-    </section>
-
-    <!-- ===== Method / Results (add figures as needed) ===== -->
-    <section class="section">
-      <h2>Method</h2>
-      <p style="text-align:center; color:#666;">TODO: Describe the method. Add figures into the gallery below.</p>
-      <div class="gallery">
-        <img src="static/images/teaser.svg" alt="Figure 1 placeholder" />
-        <img src="static/images/teaser.svg" alt="Figure 2 placeholder" />
+  <main id="top">
+    <section class="hero" aria-label="Project introduction">
+      <div class="hero-visual" aria-hidden="true">
+        <img src="static/images/cmp-car.png" alt="" />
+      </div>
+      <div class="hero-content">
+        <p class="hero-brand">SHIFT</p>
+        <h1 class="hero-title">Motion Alignment in Video Diffusion Models with Adversarial Hybrid Fine-Tuning</h1>
+        <p class="hero-lead">
+          Restore dynamic degree after fine-tuning — with pixel-motion rewards and a sampler-agnostic hybrid RL framework.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://arxiv.org/pdf/2603.17426" target="_blank" rel="noopener">Paper PDF</a>
+          <a class="btn btn-ghost" href="https://arxiv.org/abs/2603.17426" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn btn-ghost" href="#bibtex-section">BibTeX</a>
+          <span class="btn btn-ghost" style="opacity:0.55;cursor:default;" title="Coming soon">Code soon</span>
+        </div>
+        <div class="meta-bar">
+          <div class="venue">ECCV 2026</div>
+          <p class="authors">
+            Xi Ye<sup>1,2,*</sup>, Wenjia Yang<sup>1,*</sup>, Yangyang Xu<sup>1,2</sup>, Xiaoyang Liu<sup>1,3</sup>,
+            Duo Su<sup>1</sup>, Mengfei Xia<sup>2</sup>, Jun Zhu<sup>1</sup>
+          </p>
+          <p class="affils">
+            <sup>1</sup>Tsinghua University &nbsp;·&nbsp;
+            <sup>2</sup>Ant Group &nbsp;·&nbsp;
+            <sup>3</sup>University of Chinese Academy of Sciences &nbsp;·&nbsp;
+            <sup>*</sup>Equal contribution
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ===== BibTeX ===== -->
-    <section class="section bibtex">
-      <h2>BibTeX</h2>
-      <pre>@inproceedings{ye2026shift,
-  title     = {SHIFT: TODO Full Paper Title},
-  author    = {Ye, Xi and Coauthor, A. and Coauthor, B.},
-  booktitle = {TODO Venue},
+    <section id="abstract">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <h2>Abstract</h2>
+        </div>
+        <div class="abstract">
+          <p>
+            Image-conditioned video diffusion models achieve impressive visual realism but often suffer from weakened motion fidelity —
+            reduced dynamics or degraded long-term temporal coherence — especially after fine-tuning. We introduce pixel-motion rewards
+            based on pixel flux dynamics, capturing both instantaneous and long-term motion consistency. We further propose
+            <strong>Smooth Hybrid Fine-Tuning (SHIFT)</strong>, a scalable reward-driven framework that unifies supervised fine-tuning
+            and advantage-weighted fine-tuning. With adversarial advantages, SHIFT improves convergence and mitigates reward hacking,
+            efficiently resolving dynamic-degree collapse in modern video diffusion supervised fine-tuning.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Method</h2>
+        </div>
+
+        <div class="method-grid">
+          <figure class="method-figure reveal">
+            <img src="static/images/method-reward-vector.svg" alt="Pixel-motion reward models: Instantaneous Motion Reward and Long-term Motion Reward" />
+            <figcaption>
+              (a) Pixel-motion rewards: Instantaneous Motion Reward (IMR) from optical-flow residuals, and Long-term Motion Reward (LMR) from point trajectories.
+            </figcaption>
+          </figure>
+
+          <figure class="method-figure reveal">
+            <img src="static/images/method-shift-vector.svg" alt="SHIFT Smooth Hybrid Fine-Tuning framework diagram" />
+            <figcaption>
+              (b) SHIFT fuses online advantage-weighted updates on model rollouts with an offline SFT anchor on real data, while adversarially refreshing the reward model.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="pillars reveal">
+          <article class="pillar">
+            <h3>Pixel-motion rewards</h3>
+            <p>IMR and LMR supervise local coherence and sustained dynamics from optical flow and point tracks — no human labels.</p>
+          </article>
+          <article class="pillar">
+            <h3>Hybrid forward fine-tuning</h3>
+            <p>Advantage-weighted regression on rollouts plus an SFT data anchor. Sampler-agnostic; no reverse-trajectory storage.</p>
+          </article>
+          <article class="pillar">
+            <h3>Adversarial advantages</h3>
+            <p>Co-train the reward discriminator online to track distribution shift and reduce reward hacking.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Results</h2>
+          <p class="results-summary">On SVD and Wan2.2, SHIFT improves motion fidelity, preserves appearance, and trains nearly 8× faster than FlowGRPO.</p>
+        </div>
+
+        <div class="metrics reveal">
+          <div class="metric">
+            <strong>86.70</strong>
+            <span>VBench Motion (SVD) · best</span>
+          </div>
+          <div class="metric">
+            <strong>84.69</strong>
+            <span>VBench Overall (SVD) · best</span>
+          </div>
+          <div class="metric">
+            <strong>2.46×</strong>
+            <span>Training time vs SFT · vs 19.35× FlowGRPO</span>
+          </div>
+          <div class="metric">
+            <strong>86.40</strong>
+            <span>VBench Overall (Wan2.2) · best</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="tabs" role="tablist" aria-label="Result tables">
+            <button class="tab is-active" type="button" data-panel="panel-svd">SVD</button>
+            <button class="tab" type="button" data-panel="panel-wan">Wan2.2 TI2V</button>
+          </div>
+
+          <div id="panel-svd" class="panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Appearance ↑</th>
+                    <th>Motion ↑</th>
+                    <th>Overall ↑</th>
+                    <th>Motion Score ↑</th>
+                    <th>FVD ↓</th>
+                    <th>Time ↓</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Base</td>
+                    <td>83.68</td>
+                    <td>85.89</td>
+                    <td>84.41</td>
+                    <td>4.39</td>
+                    <td>395.87</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>SFT</td>
+                    <td><strong>85.07</strong></td>
+                    <td>76.09</td>
+                    <td>82.08</td>
+                    <td>2.69</td>
+                    <td><u>322.81</u></td>
+                    <td><strong>1×</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Track4Gen</td>
+                    <td><u>85.01</u></td>
+                    <td>76.44</td>
+                    <td>82.15</td>
+                    <td>2.84</td>
+                    <td><strong>316.91</strong></td>
+                    <td><u>1.07×</u></td>
+                  </tr>
+                  <tr>
+                    <td>DenseDPO</td>
+                    <td>83.73</td>
+                    <td>86.03</td>
+                    <td>84.50</td>
+                    <td>4.34</td>
+                    <td>399.73</td>
+                    <td>2.40×</td>
+                  </tr>
+                  <tr>
+                    <td>FlowGRPO</td>
+                    <td>83.61</td>
+                    <td><u>86.67</u></td>
+                    <td><u>84.63</u></td>
+                    <td><strong>4.44</strong></td>
+                    <td>396.56</td>
+                    <td>19.35×</td>
+                  </tr>
+                  <tr class="is-ours">
+                    <td>SHIFT (Ours)</td>
+                    <td>83.69</td>
+                    <td><strong>86.70</strong></td>
+                    <td><strong>84.69</strong></td>
+                    <td><u>4.40</u></td>
+                    <td>396.45</td>
+                    <td>2.46×</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">VBench-I2V on SVD. SFT / Track4Gen improve FVD but collapse motion; SHIFT keeps appearance and lifts motion efficiently.</p>
+          </div>
+
+          <div id="panel-wan" class="panel" hidden>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Appearance ↑</th>
+                    <th>Motion ↑</th>
+                    <th>Overall ↑</th>
+                    <th>Motion Score ↑</th>
+                    <th>FVD ↓</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Base</td>
+                    <td>86.29</td>
+                    <td><u>86.25</u></td>
+                    <td><u>86.27</u></td>
+                    <td><strong>2.96</strong></td>
+                    <td>284.68</td>
+                  </tr>
+                  <tr>
+                    <td>SFT</td>
+                    <td><strong>87.14</strong></td>
+                    <td>83.34</td>
+                    <td>85.87</td>
+                    <td>1.94</td>
+                    <td><strong>151.44</strong></td>
+                  </tr>
+                  <tr class="is-ours">
+                    <td>SHIFT (Ours)</td>
+                    <td><u>86.38</u></td>
+                    <td><strong>86.45</strong></td>
+                    <td><strong>86.40</strong></td>
+                    <td><u>2.93</u></td>
+                    <td><u>282.24</u></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Wan2.2-TI2V on WISA-80K deformation subset. Same pattern: SFT trades motion for FVD; SHIFT balances both.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Qualitative comparisons</h2>
+          <p class="gallery-summary">SHIFT sustains object motion and temporal structure where SFT tends toward overly static videos.</p>
+        </div>
+
+        <div class="gallery">
+          <div class="video-group reveal">
+            <h3>SVD comparisons</h3>
+            <div class="video-strip video-strip--svd" aria-label="SVD qualitative comparison videos">
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a blue car driving down a dirt road">
+                  <source src="static/videos/svd/blue-car.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Blue car driving</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a boat by a lake with Mount Fuji in the background">
+                  <source src="static/videos/svd/boat-mt-fuji.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Boat by Mount Fuji</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a group of people rafting">
+                  <source src="static/videos/svd/rafting-group.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Group rafting</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a great white shark swimming">
+                  <source src="static/videos/svd/great-white-shark.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Great white shark</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a flock of birds flying at sunset">
+                  <source src="static/videos/svd/flock-of-birds.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Flock of birds</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="SVD comparison of a brown bear catching a fish">
+                  <source src="static/videos/svd/brown-bear.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Brown bear</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="video-group reveal">
+            <h3>Wan2.2-TI2V comparisons</h3>
+            <div class="video-strip video-strip--wan22" aria-label="Wan2.2-TI2V qualitative comparison videos">
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Wan2.2-TI2V qualitative comparison example 1">
+                  <source src="static/videos/wan22/example-01.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Example 01</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Wan2.2-TI2V qualitative comparison example 2">
+                  <source src="static/videos/wan22/example-02.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Example 02</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Wan2.2-TI2V qualitative comparison example 3">
+                  <source src="static/videos/wan22/example-03.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Example 03</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Wan2.2-TI2V qualitative comparison example 4">
+                  <source src="static/videos/wan22/example-04.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Example 04</figcaption>
+              </figure>
+              <figure class="video-card">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Wan2.2-TI2V qualitative comparison example 5">
+                  <source src="static/videos/wan22/example-05.mp4" type="video/mp4" />
+                </video>
+                <figcaption>Example 05</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bibtex-section">
+      <div class="wrap reveal">
+        <div class="section-head">
+          <h2>BibTeX</h2>
+          <p>If you find this work useful, please cite:</p>
+        </div>
+        <div style="position: relative;">
+          <button class="copy-btn" type="button">Copy</button>
+          <pre class="bibtex" id="bibtex">@inproceedings{ye2026shift,
+  title     = {SHIFT: Motion Alignment in Video Diffusion Models with Adversarial Hybrid Fine-Tuning},
+  author    = {Ye, Xi and Yang, Wenjia and Xu, Yangyang and Liu, Xiaoyang and Su, Duo and Xia, Mengfei and Zhu, Jun},
+  booktitle = {European Conference on Computer Vision (ECCV)},
   year      = {2026}
 }</pre>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer>
-      <p>
-        Template adapted into a minimal static academic project page.
-        &nbsp;&middot;&nbsp; <a href="../../">Xi Ye</a>
-      </p>
-    </footer>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>SHIFT · ECCV 2026</span>
+      <span>
+        <a href="https://arxiv.org/abs/2603.17426" target="_blank" rel="noopener">arXiv:2603.17426</a>
+        · <a href="../../">Xi Ye</a>
+      </span>
+    </div>
+  </footer>
 
-  </div>
+  <script src="static/js/main.js"></script>
 </body>
 </html>

@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500">
-  <rect width="1200" height="500" fill="#f1f4f9"/>
-  <rect x="1" y="1" width="1198" height="498" fill="none" stroke="#d3dbe8" stroke-width="2" stroke-dasharray="8 8"/>
-  <text x="600" y="240" font-family="sans-serif" font-size="42" fill="#8a99b3" text-anchor="middle" font-weight="bold">SHIFT</text>
-  <text x="600" y="290" font-family="sans-serif" font-size="22" fill="#9aa7bd" text-anchor="middle">teaser figure placeholder</text>
-</svg>
