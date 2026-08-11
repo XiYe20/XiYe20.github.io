@@ -2,79 +2,284 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xi Ye</title>
-  <meta name="description" content="Personal homepage of Xi Ye." />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xi Ye — Generative Models &amp; Embodied AI</title>
+  <meta name="description" content="Xi Ye is a postdoctoral researcher at Tsinghua University working on generative models, world models, and embodied AI." />
+  <link rel="stylesheet" href="css/style.css?v=20260812-2" />
 </head>
 <body>
-  <div class="container">
-
-    <!-- ===== Intro ===== -->
-    <header class="intro">
-      <img src="assets/profile.svg" alt="Xi Ye" />
-      <div>
-        <h1>Xi Ye</h1>
-        <p class="role">TODO: Position, Affiliation</p>
-        <p class="links">
-          <a href="mailto:xi.ye.2020@gmail.com">Email</a>
-          <a href="#">Google Scholar</a>
-          <a href="https://github.com/XiYe20">GitHub</a>
-          <a href="#">CV</a>
-          <a href="#">Twitter</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="intro-copy">
+        <div class="identity-row">
+          <div class="identity-copy">
+            <p class="eyebrow">Research · Beijing, China</p>
+            <h1>Xi Ye</h1>
+            <p class="role">Postdoctoral Researcher <span aria-hidden="true">·</span> Generative Models &amp; Embodied AI</p>
+          </div>
+          <figure class="profile-portrait">
+            <img src="assets/portrait-minion.jpg" alt="Minions figure in a wooded theme park setting" />
+          </figure>
+        </div>
+        <p class="affiliation">
+          Postdoctoral Fellow at <a href="https://www.cs.tsinghua.edu.cn/csen/" target="_blank" rel="noopener">Tsinghua University</a>,
+          with research collaborations at <a href="https://www.antresearch.com/" target="_blank" rel="noopener">Ant Research</a>
+          and <a href="https://www.bosch.com/research/" target="_blank" rel="noopener">Bosch Research</a>.
         </p>
+        <nav class="profile-links" aria-label="Profile links">
+          <a href="mailto:xi.ye.2020@gmail.com">Email</a>
+          <a href="https://scholar.google.com/citations?user=Woehn70AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://github.com/XiYe20" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+        <div class="opportunity-list">
+          <p class="opportunity-status"><span>Open to academic and industry opportunities! Feel free to <a class="contact-link" href="mailto:xi.ye.2020@gmail.com" aria-label="Contact me by email. Phone: +86 18696789916 or +1 4389412984" aria-describedby="contact-details">contact me<span class="contact-popover" id="contact-details" role="tooltip"><span class="contact-email">Email: xi.ye.2020@gmail.com</span><span class="contact-phone"><span>Tel: +86 18696789916</span><span>+1 4389412984</span></span><span class="wechat-label">WeChat</span><img src="wechat_qr_code.jpg?v=20260812" alt="WeChat QR code" /></span></a>.</span></p>
+          <p class="opportunity-status"><span>Open to research collaborations · Hiring research interns</span></p>
+        </div>
       </div>
     </header>
 
-    <!-- ===== About ===== -->
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        TODO: Write a short bio here. Your research interests, background, and what
-        you're currently working on. A couple of sentences is enough.
-      </p>
-    </section>
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#appointments">Appointments</a>
+      <a href="#education">Education</a>
+    </nav>
 
-    <!-- ===== News ===== -->
-    <section id="news">
-      <h2>News</h2>
-      <ul class="news">
-        <li><span class="date">2026-06</span>TODO: Add a recent news item.</li>
-        <li><span class="date">2026-01</span>TODO: Add another news item.</li>
-      </ul>
-    </section>
-
-    <!-- ===== Publications ===== -->
-    <section id="publications">
-      <h2>Publications</h2>
-
-      <!-- Each paper is one .pub block. Copy this block for new papers. -->
-      <div class="pub">
-        <div class="thumb">
-          <a href="projects/SHIFT/">
-            <img src="projects/SHIFT/static/images/cmp-car.png" alt="SHIFT qualitative comparison teaser" />
-          </a>
+    <main>
+      <section id="about">
+        <div class="section-heading">
+          <p>01</p>
+          <h2>About</h2>
         </div>
-        <div class="meta">
-          <p class="title">
-            <a href="projects/SHIFT/">SHIFT: Motion Alignment in Video Diffusion Models with Adversarial Hybrid Fine-Tuning</a>
+        <div class="section-content about-copy">
+          <p>
+            I am a postdoctoral researcher in the <a href="https://ml.cs.tsinghua.edu.cn/people.html" target="_blank" rel="noopener">TSAIL Group</a>
+            at Tsinghua University, working with Prof. Jun Zhu. My research centers on deep generative models, world models, and embodied AI,
+            with a particular focus on video generation, efficient diffusion policy, and representation learning.
           </p>
-          <p class="authors"><strong>Xi Ye</strong>, Wenjia Yang, Yangyang Xu, Xiaoyang Liu, Duo Su, Mengfei Xia, Jun Zhu</p>
-          <p class="venue">ECCV 2026</p>
-          <p class="badges">
-            <a href="projects/SHIFT/">Project Page</a>
-            <a href="https://arxiv.org/pdf/2603.17426">Paper</a>
-            <a href="https://arxiv.org/abs/2603.17426">arXiv</a>
+          <p>
+            My work has been published at ECCV, ICLR, AAAI, IROS, and other computer vision venues.
+            I received my Ph.D. in Computer Engineering from Université de Montréal at Polytechnique Montréal.
           </p>
+          <ul class="research-tags" aria-label="Research interests">
+            <li>Generative models</li>
+            <li>Diffusion models</li>
+            <li>World models</li>
+            <li>Embodied AI</li>
+            <li>Video generation</li>
+          </ul>
         </div>
-      </div>
+      </section>
 
-    </section>
+      <section id="news">
+        <div class="section-heading">
+          <p>02</p>
+          <h2>News</h2>
+        </div>
+        <div class="section-content">
+          <ul class="news-list">
+            <li><time datetime="2026-05">May 2026</time><span><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener"><em>h-control</em></a>, our training-free camera-control method, was released on arXiv.</span></li>
+            <li><time datetime="2026-03">Mar 2026</time><span><a href="projects/SHIFT/"><em>SHIFT</em></a> was accepted by ECCV 2026.</span></li>
+            <li><time datetime="2026-01">Jan 2026</time><span><a href="https://openreview.net/forum?id=Hvge3NzkJN" target="_blank" rel="noopener"><em>DAP</em></a> was accepted by ICLR 2026.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="publications">
+        <div class="section-heading">
+          <p>03</p>
+          <h2>Selected Publications</h2>
+        </div>
+        <div class="section-content">
+          <p class="section-note">For the complete list, visit <a href="https://scholar.google.com/citations?user=Woehn70AAAAJ" target="_blank" rel="noopener">Google Scholar</a>. <sup>†</sup> Equal contribution. <sup>*</sup> Corresponding author.</p>
+
+          <div class="publication-list">
+            <article class="publication">
+              <div class="pub-thumb pub-placeholder" aria-hidden="true"><span>h-control</span><small>Preview forthcoming</small></div>
+              <div class="pub-meta">
+                <p class="pub-year">2026</p>
+                <h3><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener"><em>h</em>-control: Training-Free Camera Control via Block-Conditional Gibbs Refinement</a></h3>
+                <p class="authors">Yuzhu Wang<sup>†</sup>, <strong>Xi Ye<sup>†</sup></strong>, Duo Su, Yangyang Xu, Jun Zhu</p>
+                <p class="venue">arXiv:2605.11871</p>
+                <p class="paper-links"><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv</a><a href="https://github.com/wangyuzhu6/hcontrol" target="_blank" rel="noopener">Code</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="projects/SHIFT/" aria-label="Open the SHIFT project page">
+                <img src="projects/SHIFT/static/images/cmp-car.png" alt="SHIFT qualitative comparison preview" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2026</p>
+                <h3><a href="projects/SHIFT/">SHIFT: Motion Alignment in Video Diffusion Models with Adversarial Hybrid Fine-Tuning</a></h3>
+                <p class="authors"><strong>Xi Ye<sup>†</sup></strong>, Wenjia Yang<sup>†</sup>, Yangyang Xu, Xiaoyang Liu, Duo Su, Mengfei Xia, Jun Zhu</p>
+                <p class="venue">European Conference on Computer Vision (ECCV 2026)</p>
+                <p class="paper-links"><a href="projects/SHIFT/">Project</a><a href="https://arxiv.org/abs/2603.17426" target="_blank" rel="noopener">arXiv</a><a href="https://arxiv.org/pdf/2603.17426" target="_blank" rel="noopener">PDF</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://suduo94.github.io/Diffusion-As-Priors/" target="_blank" rel="noopener" aria-label="Open the Diffusion as Priors project page">
+                <img src="assets/publications/diffusion-as-priors.png" alt="Diffusion as Priors overview preview" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2026</p>
+                <h3><a href="https://openreview.net/forum?id=Hvge3NzkJN" target="_blank" rel="noopener">Diffusion Models as Dataset Distillation Priors</a></h3>
+                <p class="authors">Duo Su, Huyu Wu, Huanran Chen, Yiming Shi, Yuzhu Wang, <strong>Xi Ye</strong>, Jun Zhu</p>
+                <p class="venue">International Conference on Learning Representations (ICLR 2026)</p>
+                <p class="paper-links"><a href="https://suduo94.github.io/Diffusion-As-Priors/" target="_blank" rel="noopener">Project</a><a href="https://openreview.net/forum?id=Hvge3NzkJN" target="_blank" rel="noopener">OpenReview</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <div class="pub-thumb pub-placeholder" aria-hidden="true"><span>MoE Experts</span><small>Preview forthcoming</small></div>
+              <div class="pub-meta">
+                <p class="pub-year">2025</p>
+                <h3><a href="https://doi.org/10.1145/3746027.3755586" target="_blank" rel="noopener">Multi-Task Dense Prediction Fine-Tuning with Mixture of Fine-Grained Experts</a></h3>
+                <p class="authors">Yangyang Xu, <strong>Xi Ye<sup>*</sup></strong>, Duo Su</p>
+                <p class="venue">ACM International Conference on Multimedia (ACM MM 2025)</p>
+                <p class="paper-links"><a href="https://doi.org/10.1145/3746027.3755586" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <div class="pub-thumb pub-placeholder" aria-hidden="true"><span>RA-DP</span><small>Preview forthcoming</small></div>
+              <div class="pub-meta">
+                <p class="pub-year">2025</p>
+                <h3><a href="https://doi.org/10.1109/IROS60139.2025.11246593" target="_blank" rel="noopener">RA-DP: Rapid Adaptive Diffusion Policy for Training-Free High-frequency Robotics Replanning</a></h3>
+                <p class="authors"><strong>Xi Ye<sup>†</sup></strong>, Rui Heng Yang<sup>†</sup>, Jun Jin, Yinchuan Li, Amir Rasouli</p>
+                <p class="venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025)</p>
+                <p class="paper-links"><a href="https://arxiv.org/abs/2503.04051" target="_blank" rel="noopener">arXiv</a><a href="https://doi.org/10.1109/IROS60139.2025.11246593" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://npvp.github.io/" target="_blank" rel="noopener" aria-label="Open the NPVP project page">
+                <img src="assets/publications/npvp-architecture.png" alt="Architecture of the NPVP neural-process-based video predictor" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2025</p>
+                <h3><a href="https://doi.org/10.1016/j.cviu.2025.104387" target="_blank" rel="noopener">Continuous Conditional Video Synthesis by Neural Processes</a></h3>
+                <p class="authors"><strong>Xi Ye</strong>, Guillaume-Alexandre Bilodeau</p>
+                <p class="venue">Computer Vision and Image Understanding, 259:104387</p>
+                <p class="paper-links"><a href="https://npvp.github.io/" target="_blank" rel="noopener">Project</a><a href="https://github.com/XiYe20/NPVP" target="_blank" rel="noopener">Code</a><a href="https://doi.org/10.1016/j.cviu.2025.104387" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://xiye20.github.io/STDiffProject/" target="_blank" rel="noopener" aria-label="Open the STDiff project page">
+                <img src="assets/publications/stdiff-bair.jpg" alt="STDiff stochastic video prediction examples" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2024</p>
+                <h3><a href="https://doi.org/10.1609/aaai.v38i7.28489" target="_blank" rel="noopener">STDiff: Spatio-Temporal Diffusion for Continuous Stochastic Video Prediction</a></h3>
+                <p class="authors"><strong>Xi Ye</strong>, Guillaume-Alexandre Bilodeau</p>
+                <p class="venue">AAAI Conference on Artificial Intelligence (AAAI 2024)</p>
+                <p class="paper-links"><a href="https://xiye20.github.io/STDiffProject/" target="_blank" rel="noopener">Project</a><a href="https://github.com/XiYe20/STDiffProject" target="_blank" rel="noopener">Code</a><a href="https://doi.org/10.1609/aaai.v38i7.28489" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://npvp.github.io/" target="_blank" rel="noopener" aria-label="Open the NPVP project page">
+                <img src="assets/publications/npvp-figure4.png" alt="NPVP Figure 4 showing one model across conditional video prediction tasks" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2023</p>
+                <h3><a href="https://doi.org/10.1109/CVPRW59228.2023.00368" target="_blank" rel="noopener">A Unified Model for Continuous Conditional Video Prediction</a></h3>
+                <p class="authors"><strong>Xi Ye</strong>, Guillaume-Alexandre Bilodeau</p>
+                <p class="venue">IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW 2023)</p>
+                <p class="paper-links"><a href="https://npvp.github.io/" target="_blank" rel="noopener">Project</a><a href="https://github.com/XiYe20/NPVP" target="_blank" rel="noopener">Code</a><a href="https://arxiv.org/abs/2210.05810" target="_blank" rel="noopener">arXiv</a><a href="https://doi.org/10.1109/CVPRW59228.2023.00368" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://arxiv.org/abs/2212.06026" target="_blank" rel="noopener" aria-label="Open Video Prediction by Efficient Transformers on arXiv">
+                <img src="assets/publications/vptr-nar.png" alt="Architecture of the non-autoregressive VPTR model" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2023</p>
+                <h3><a href="https://doi.org/10.1016/j.imavis.2022.104612" target="_blank" rel="noopener">Video Prediction by Efficient Transformers</a></h3>
+                <p class="authors"><strong>Xi Ye</strong>, Guillaume-Alexandre Bilodeau</p>
+                <p class="venue">Image and Vision Computing, 130:104612</p>
+                <p class="paper-links"><a href="https://github.com/XiYe20/VPTR" target="_blank" rel="noopener">Code</a><a href="https://arxiv.org/abs/2212.06026" target="_blank" rel="noopener">arXiv</a><a href="https://doi.org/10.1016/j.imavis.2022.104612" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+            <article class="publication">
+              <a class="pub-thumb" href="https://arxiv.org/abs/2203.15836" target="_blank" rel="noopener" aria-label="Open the VPTR paper on arXiv">
+                <img src="assets/publications/vptr-framework.png" alt="Overall VPTR framework with frame encoder, VPTR module, and frame decoder" />
+              </a>
+              <div class="pub-meta">
+                <p class="pub-year">2022</p>
+                <h3><a href="https://doi.org/10.1109/ICPR56361.2022.9956707" target="_blank" rel="noopener">VPTR: Efficient Transformers for Video Prediction</a></h3>
+                <p class="authors"><strong>Xi Ye</strong>, Guillaume-Alexandre Bilodeau</p>
+                <p class="venue">International Conference on Pattern Recognition (ICPR 2022)</p>
+                <p class="paper-links"><a href="https://github.com/XiYe20/VPTR" target="_blank" rel="noopener">Code</a><a href="https://arxiv.org/abs/2203.15836" target="_blank" rel="noopener">arXiv</a><a href="https://doi.org/10.1109/ICPR56361.2022.9956707" target="_blank" rel="noopener">DOI</a></p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="appointments">
+        <div class="section-heading">
+          <p>04</p>
+          <h2>Appointments</h2>
+        </div>
+        <div class="section-content timeline">
+          <article>
+            <div class="timeline-date">Sep 2024 — Present</div>
+            <div>
+              <h3>Postdoctoral Fellow</h3>
+              <p class="organization"><a href="https://www.cs.tsinghua.edu.cn/csen/" target="_blank" rel="noopener">Tsinghua University</a> · Beijing, China</p>
+              <p>Research on generative models, world models, video generation, camera control, dataset distillation, and robot learning in the TSAIL Group.</p>
+            </div>
+          </article>
+          <article>
+            <div class="timeline-date">Nov 2025 — Present</div>
+            <div>
+              <h3>Academic Consultant <span>(part-time)</span></h3>
+              <p class="organization"><a href="https://www.antgroup.com/en" target="_blank" rel="noopener">Ant Group</a> · Beijing, China</p>
+              <p>Research on physics-informed world models for embodied AI with Ant Research.</p>
+            </div>
+          </article>
+          <article>
+            <div class="timeline-date">May 2025 — Present</div>
+            <div>
+              <h3>Academic Consultant <span>(part-time)</span></h3>
+              <p class="organization"><a href="https://www.bosch.com/research/" target="_blank" rel="noopener">Bosch Research</a> · Germany</p>
+              <p>Research on world models for autonomous driving through the Tsinghua–Bosch collaboration.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-heading">
+          <p>05</p>
+          <h2>Education</h2>
+        </div>
+        <div class="section-content timeline compact-timeline education-list">
+          <article>
+            <div><h3>Ph.D.</h3><p class="organization">Université de Montréal · Polytechnique Montréal</p><p class="education-date">2020–2024</p></div>
+          </article>
+          <article>
+            <div><h3>M.S.</h3><p class="organization">Huazhong University of Science and Technology</p><p class="education-date">2016–2019</p></div>
+          </article>
+          <article>
+            <div><h3>B.Eng.</h3><p class="organization">Harbin Institute of Technology</p><p class="education-date">2012–2016</p></div>
+          </article>
+        </div>
+      </section>
+
+    </main>
 
     <footer>
-      &copy; 2026 Xi Ye &middot; Built as static HTML on GitHub Pages.
+      <p>© 2026 Xi Ye</p>
+      <a href="mailto:xi.ye.2020@gmail.com">xi.ye.2020@gmail.com</a>
     </footer>
-
   </div>
 </body>
 </html>
