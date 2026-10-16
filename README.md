@@ -10,7 +10,8 @@ Personal homepage and paper project pages, served as static HTML via GitHub Page
 ├── css/style.css           # Homepage styles
 ├── assets/                 # Homepage assets (profile photo, etc.)
 ├── projects/
-│   └── SHIFT/              # One folder per paper -> /projects/SHIFT/
+│   ├── h-control/          # Camera control paper -> /projects/h-control/
+│   └── SHIFT/              # Motion alignment paper -> /projects/SHIFT/
 │       ├── index.html
 │       └── static/         # css / js / images for this paper
 ├── .nojekyll               # serve files as-is (no Jekyll build)

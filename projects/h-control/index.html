@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>h-control — Training-Free Camera Control</title>
+  <meta name="description" content="h-control: Training-Free Camera Control via Block-Conditional Gibbs Refinement. NeurIPS 2026. Camera-controlled video generation without fine-tuning." />
+  <meta property="og:title" content="h-control — Training-Free Camera Control" />
+  <meta property="og:description" content="Block-conditional Gibbs refinement for camera-controlled video generation. Explore comparisons on RealEstate10K and DAVIS." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xiye20.github.io/projects/h-control/" />
+  <meta property="og:image" content="https://xiye20.github.io/projects/h-control/static/images/hero-patio-doors.jpg" />
+  <link rel="canonical" href="https://xiye20.github.io/projects/h-control/" />
+  <link rel="stylesheet" href="static/css/style.css?v=20261016" />
+  <noscript><style>.panel[hidden] { display: block !important; margin-top: 2rem; } [role="tablist"] { display: none; }</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="nav-brand" href="#top"><em>h</em>-control</a>
+      <nav class="nav-links" aria-label="Section">
+        <a href="../../">Home</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#bibtex-section">BibTeX</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Project introduction">
+      <div class="hero-visual" aria-hidden="true">
+        <video id="hero-video" autoplay loop muted playsinline preload="auto" poster="static/images/hero-patio-doors.jpg" width="960" height="460" tabindex="-1">
+          <source src="static/videos/hero-patio-doors.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-content">
+        <p class="hero-brand"><em>h</em>-control</p>
+        <h1 class="hero-title">Training-Free Camera Control via Block-Conditional Gibbs Refinement</h1>
+        <p class="hero-lead">Steer the camera. Preserve the scene.<br />Refine a pretrained video model at inference time, with no fine-tuning.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://arxiv.org/pdf/2605.11871" target="_blank" rel="noopener">Paper PDF</a>
+          <a class="btn btn-ghost" href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn btn-ghost" href="https://github.com/wangyuzhu6/hcontrol" target="_blank" rel="noopener">Code</a>
+          <a class="btn btn-ghost" href="#gallery">Explore videos <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#bibtex-section">BibTeX</a>
+        </div>
+        <div class="meta-bar">
+          <div class="venue">NeurIPS 2026</div>
+          <p class="authors">Yuzhu Wang<sup>1,2,†</sup>, <a href="../../">Xi Ye</a><sup>1,†</sup>, Duo Su<sup>1</sup>, Yangyang Xu<sup>1</sup>, Jun Zhu<sup>1,*</sup></p>
+          <p class="affils"><sup>1</sup>Department of Computer Science and Technology, Tsinghua University<br /><sup>2</sup>South China University of Technology &nbsp;·&nbsp; <sup>†</sup>Equal contribution &nbsp;·&nbsp; <sup>*</sup>Corresponding author</p>
+        </div>
+      </div>
+      <button class="hero-motion-toggle" id="hero-motion-toggle" type="button" aria-controls="hero-video" hidden>Pause background</button>
+    </section>
+
+    <section id="abstract">
+      <div class="wrap reveal">
+        <div class="section-head"><h2>Abstract</h2></div>
+        <div class="abstract">
+          <p>Training-free camera control for pretrained flow-matching video generators is a partial-observation inverse problem: a depth-warped guidance video supplies noisy evidence on a subset of latent sites, which the sampler must reconcile with the pretrained prior. Existing methods struggle to balance trajectory adherence and visual quality, and heuristic guidance-strength tuning lacks robustness. We propose <strong><em>h</em>-control</strong>, which augments each outer hard-replacement guidance step with an inner-loop <strong>block-conditional pseudo-Gibbs refinement</strong> on the unobserved complement at the same noise level. Under the paper’s stated assumptions, this chain converges to the partial-observation conditional data law. To make refinement practical at video scale, we exploit conditional locality, partition the unobserved complement into 3D patches, and adaptively freeze patches as they converge. On RealEstate10K and DAVIS, <em>h</em>-control achieves the best FVD among all eight evaluated methods and matches or improves on every training-free baseline across all reported metrics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Method</h2>
+          <p>Keep the camera evidence fixed. Let the video prior refine what the camera reveals.</p>
+        </div>
+        <div class="pillars method-steps reveal">
+          <article class="pillar">
+            <span class="step-number">01 / Guide</span>
+            <h3>Anchor the observed regions</h3>
+            <p>Lift the source into 3D and reproject it along the target camera trajectory. The warped video and visibility mask provide the observed latents for an outer hard-replacement step.</p>
+          </article>
+          <article class="pillar">
+            <span class="step-number">02 / Refine</span>
+            <h3>Resample the unobserved regions</h3>
+            <p>At the same noise level, perturb and re-denoise the unobserved complement while pinning the observed sites to their noised guidance. Average the inner iterates for a stable readout.</p>
+          </article>
+          <article class="pillar">
+            <span class="step-number">03 / Freeze</span>
+            <h3>Stop where patches converge</h3>
+            <p>Track each 3D patch with a Δ-Welford mixing indicator. Freeze locally stable patches, continue refining the rest, and advance to the next outer denoising step.</p>
+          </article>
+        </div>
+        <figure class="method-figure method-wide reveal">
+          <a href="static/images/checkerboard-toy-example.webp" target="_blank" rel="noopener" aria-label="Open the checkerboard experiment figure at full size">
+            <img src="static/images/checkerboard-toy-example.webp" alt="2D checkerboard: the ground-truth conditional has two modes; h-control concentrates samples in both modes, while DPS and TFG-UGD spread samples along the observation constraint." loading="lazy" width="1796" height="494" />
+          </a>
+          <figcaption><strong>Why refine?</strong> In the 2D checkerboard experiment, <em>h</em>-control recovers both conditional modes, with a 98% posterior-hit rate compared with 79% for DPS and 89% for TFG-UGD.</figcaption>
+        </figure>
+        <div class="method-grid method-evidence">
+          <figure class="method-figure reveal">
+            <a href="static/images/heat-map.webp" target="_blank" rel="noopener" aria-label="Open the latent locality figure at full size"><img src="static/images/heat-map.webp" alt="Block partial-correlation heatmaps along height, width, and time, showing dependence concentrated close to the diagonal." loading="lazy" width="1800" height="549" /></a>
+            <figcaption><strong>Video latents are locally dependent.</strong> On 200 encoded videos, conditional correlations fall toward the noise floor within roughly two positions along each spatial and temporal axis.</figcaption>
+          </figure>
+          <figure class="method-figure reveal">
+            <a href="static/images/stable-mask.webp" target="_blank" rel="noopener" aria-label="Open the patch stability figure at full size"><img src="static/images/stable-mask.webp" alt="Patch stability masks at inner iterations 4 and 12 above warped frames of cyclists. White stable regions expand as refinement progresses." loading="lazy" width="1373" height="745" /></a>
+            <figcaption><strong>Freeze patches as they stabilize.</strong> The stable region grows between inner iterations 4 and 12, allowing refinement to stop locally instead of using one fixed budget everywhere.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Results</h2>
+          <p class="results-summary">Best FVD on both benchmarks, with no camera-conditioned fine-tuning.</p>
+        </div>
+        <div class="metrics reveal">
+          <div class="metric"><strong>129.25</strong><span>FVD ↓ · RealEstate10K</span></div>
+          <div class="metric"><strong>356.73</strong><span>FVD ↓ · DAVIS</span></div>
+          <div class="metric"><strong>17.7%</strong><span>Lower RealEstate10K FVD vs. Coarse-Guided</span></div>
+          <div class="metric"><strong>7.13</strong><span>Frames/min · 720 × 1280 · NVIDIA A40</span></div>
+        </div>
+        <div class="reveal" data-tabs>
+          <div class="tabs" role="tablist" aria-label="Benchmark results">
+            <button id="tab-real10k" class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-real10k" data-panel="panel-real10k">RealEstate10K</button>
+            <button id="tab-davis" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-davis" tabindex="-1" data-panel="panel-davis">DAVIS</button>
+          </div>
+          <div id="panel-real10k" class="panel" role="tabpanel" aria-labelledby="tab-real10k" tabindex="0">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="RealEstate10K results; scroll horizontally for all metrics">
+              <table>
+                <caption class="sr-only">RealEstate10K, 200 test scenes. Bold indicates best across all methods.</caption>
+                <thead><tr><th scope="col">Method</th><th scope="col">FVD ↓</th><th scope="col">ATE (cm) ↓</th><th scope="col">RRE (deg) ↓</th><th scope="col">RTE (cm) ↓</th><th scope="col">LPIPS ↓</th><th scope="col">SSIM ↑</th><th scope="col">CLIP-f ↑</th><th scope="col">CLIP-v ↑</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">WorldForge</th><td>158.47</td><td>5.8838</td><td>0.4373</td><td>1.4176</td><td>0.42 ± 0.20</td><td>0.56 ± 0.17</td><td>97.87</td><td>92.54</td></tr>
+                  <tr><th scope="row">TTM</th><td>192.88</td><td>3.8700</td><td>0.4751</td><td>1.1745</td><td>0.48 ± 0.19</td><td>0.52 ± 0.17</td><td>98.16</td><td>93.39</td></tr>
+                  <tr><th scope="row">Coarse-Guided</th><td>157.08</td><td>3.5719</td><td>0.4403</td><td>0.9535</td><td>0.42 ± 0.20</td><td>0.62 ± 0.18</td><td>97.84</td><td>91.60</td></tr>
+                  <tr><th scope="row">RePaint</th><td>265.00</td><td>10.3861</td><td>0.7438</td><td>2.8434</td><td>0.52 ± 0.21</td><td>0.54 ± 0.17</td><td>97.66</td><td>90.13</td></tr>
+                  <tr class="group-start"><th scope="row">TrajectoryAttention<sup>†</sup></th><td>616.81</td><td>18.0606</td><td>0.8492</td><td>3.2817</td><td>0.45 ± 0.20</td><td><strong>0.64</strong> ± 0.16</td><td>97.10</td><td>87.23</td></tr>
+                  <tr><th scope="row">TrajectoryCrafter<sup>†</sup></th><td>253.27</td><td>4.1568</td><td><strong>0.4235</strong></td><td>0.9794</td><td>0.43 ± 0.17</td><td>0.63 ± 0.16</td><td>97.71</td><td>91.50</td></tr>
+                  <tr><th scope="row">ReCamMaster<sup>†</sup></th><td>299.33</td><td>5.1924</td><td>0.4627</td><td>1.6436</td><td>0.59 ± 0.15</td><td>0.53 ± 0.15</td><td>98.21</td><td>89.34</td></tr>
+                  <tr class="is-ours group-start"><th scope="row"><em>h</em>-control (Ours)</th><td><strong>129.25</strong></td><td><strong>3.4920</strong></td><td>0.4321</td><td><strong>0.9483</strong></td><td><strong>0.41</strong> ± 0.18</td><td>0.62 ± 0.17</td><td><strong>98.52</strong></td><td><strong>93.80</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">200 test scenes. <strong>Bold</strong>: best across all methods. <sup>†</sup>Training-based. All training-free methods use Wan 2.2 TI2V-5B. ATE / RRE / RTE measure camera trajectory error; ↓ lower is better, ↑ higher is better.</p>
+          </div>
+          <div id="panel-davis" class="panel" role="tabpanel" aria-labelledby="tab-davis" tabindex="0" hidden>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="DAVIS results; scroll horizontally for all metrics">
+              <table>
+                <caption class="sr-only">DAVIS, 84 videos from 28 dynamic scenes. Bold indicates best across all methods.</caption>
+                <thead><tr><th scope="col">Method</th><th scope="col">FVD ↓</th><th scope="col">ATE (cm) ↓</th><th scope="col">RRE (deg) ↓</th><th scope="col">RTE (cm) ↓</th><th scope="col">CLIP-f ↑</th><th scope="col">CLIP-v ↑</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">WorldForge</th><td>383.53</td><td>8.2694</td><td>1.9323</td><td>5.1275</td><td>97.05</td><td>89.25</td></tr>
+                  <tr><th scope="row">TTM</th><td>398.12</td><td>7.8849</td><td>1.9111</td><td>4.3735</td><td>97.35</td><td>89.85</td></tr>
+                  <tr><th scope="row">Coarse-Guided</th><td>402.14</td><td>9.0672</td><td>2.1216</td><td>4.3978</td><td>96.40</td><td>87.35</td></tr>
+                  <tr><th scope="row">RePaint</th><td>690.83</td><td>9.9780</td><td>2.2468</td><td>5.1842</td><td>95.33</td><td>74.76</td></tr>
+                  <tr class="group-start"><th scope="row">TrajectoryAttention<sup>†</sup></th><td>837.37</td><td>18.3749</td><td>3.6871</td><td>7.2034</td><td>93.88</td><td>74.23</td></tr>
+                  <tr><th scope="row">TrajectoryCrafter<sup>†</sup></th><td>576.30</td><td>7.3827</td><td>2.1045</td><td>4.7158</td><td>95.86</td><td>83.21</td></tr>
+                  <tr><th scope="row">ReCamMaster<sup>†</sup></th><td>670.42</td><td><strong>4.9770</strong></td><td><strong>0.6352</strong></td><td><strong>1.7271</strong></td><td>95.39</td><td>85.06</td></tr>
+                  <tr class="is-ours group-start"><th scope="row"><em>h</em>-control (Ours)</th><td><strong>356.73</strong></td><td>6.8832</td><td>1.8907</td><td>4.2285</td><td><strong>97.45</strong></td><td><strong>90.34</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">84 videos: three controlled camera trajectories on each of 28 dynamic scenes. <strong>Bold</strong>: best across all methods. <sup>†</sup>Training-based. ReCamMaster leads on trajectory error; <em>h</em>-control leads on FVD and both CLIP scores.</p>
+          </div>
+        </div>
+        <details class="ablation reveal">
+          <summary>What does each component contribute?</summary>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Component ablation on DAVIS">
+            <table>
+              <caption class="sr-only">Component ablation on DAVIS</caption>
+              <thead><tr><th scope="col">Sampler configuration</th><th scope="col">FVD ↓</th><th scope="col">ATE (cm) ↓</th><th scope="col">CLIP-v ↑</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Outer guidance only</th><td>392.13</td><td>7.9558</td><td>88.93</td></tr>
+                <tr><th scope="row">+ Pseudo-Gibbs refinement</th><td>382.26</td><td>7.6343</td><td>89.71</td></tr>
+                <tr><th scope="row">+ Refinement + Polyak readout</th><td>375.67</td><td>7.6051</td><td>89.49</td></tr>
+                <tr><th scope="row">+ Refinement + patch-freeze gate</th><td>382.26</td><td>7.8734</td><td>89.62</td></tr>
+                <tr class="is-ours"><th scope="row">Full <em>h</em>-control</th><td><strong>356.73</strong></td><td><strong>6.8832</strong></td><td><strong>90.34</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Selected metrics from the DAVIS ablation. Averaging and adaptive patch freezing work together: the full sampler gives the strongest result on all three metrics shown.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <h2>Video gallery</h2>
+          <p>Explore camera control in static and dynamic scenes. Choose a scene and a baseline to compare the videos side by side.</p>
+        </div>
+        <div class="comparison reveal">
+          <div class="gallery-controls" hidden>
+            <label for="scene-select">Scene
+              <select id="scene-select">
+                <optgroup label="RealEstate10K · static scenes">
+                  <option value="real10k-2">Patio doors</option>
+                  <option value="real10k-1">Billiard room</option>
+                  <option value="real10k-3">Hallway</option>
+                </optgroup>
+                <optgroup label="DAVIS · dynamic scenes">
+                  <option value="davis-1">Violinist</option>
+                  <option value="davis-2">Helicopter</option>
+                </optgroup>
+              </select>
+            </label>
+            <label for="baseline-select">Compare with
+              <select id="baseline-select">
+                <optgroup label="Training-free">
+                  <option value="coarse-guided">Coarse-Guided</option>
+                  <option value="worldforge">WorldForge</option>
+                  <option value="ttm">TTM</option>
+                  <option value="repaint">RePaint</option>
+                </optgroup>
+                <optgroup label="Training-based">
+                  <option value="trajectorycrafter">TrajectoryCrafter</option>
+                  <option value="trajectoryattention">TrajectoryAttention</option>
+                  <option value="recammaster">ReCamMaster</option>
+                </optgroup>
+              </select>
+            </label>
+            <p class="gallery-status" id="gallery-status" role="status">RealEstate10K · static scene</p>
+          </div>
+          <div class="comparison-grid">
+            <figure class="video-card">
+              <figcaption id="reference-label">Reference video</figcaption>
+              <video id="video-reference" controls muted playsinline preload="none" poster="static/videos/real10k-2/reference.jpg" aria-labelledby="reference-label" width="960" height="540" src="static/videos/real10k-2/reference.mp4"></video>
+            </figure>
+            <figure class="video-card video-card--ours">
+              <figcaption id="ours-label"><em>h</em>-control <span>Ours · training-free</span></figcaption>
+              <video id="video-ours" controls muted playsinline preload="none" poster="static/videos/real10k-2/ours.jpg" aria-labelledby="ours-label" width="960" height="540" src="static/videos/real10k-2/ours.mp4"></video>
+            </figure>
+            <figure class="video-card">
+              <figcaption id="baseline-label">Coarse-Guided <span>Training-free</span></figcaption>
+              <video id="video-baseline" controls muted playsinline preload="none" poster="static/videos/real10k-2/coarse-guided.jpg" aria-labelledby="baseline-label" width="960" height="540" src="static/videos/real10k-2/coarse-guided.mp4"></video>
+            </figure>
+          </div>
+          <div class="playback-controls" hidden>
+            <button class="tab is-active" id="play-comparison" type="button">Play comparison</button>
+            <button class="tab" id="restart-comparison" type="button">Restart</button>
+            <label for="video-progress" class="sr-only">Comparison playback position</label>
+            <input id="video-progress" type="range" min="0" max="3.0625" value="0" step="0.01" aria-valuetext="0.0 seconds" />
+            <output id="video-time" for="video-progress">0.0 / 3.1 s</output>
+          </div>
+          <p class="table-note" id="reference-note">RealEstate10K reference: held-out video along the target camera trajectory. Clips are cropped from the supplementary comparison grids; all methods retain their original timing.</p>
+          <noscript><p class="table-note">Enable JavaScript to switch between all five scenes and seven baselines. The default comparison can be played using each video’s controls.</p></noscript>
+        </div>
+        <div class="qualitative-figures">
+          <figure class="results-figure reveal">
+            <a href="static/images/real10k-main-exp.webp" target="_blank" rel="noopener" aria-label="Open the RealEstate10K comparison figure at full size"><img src="static/images/real10k-main-exp.webp" alt="RealEstate10K qualitative comparison showing target camera paths and three frames from the reference and all eight evaluated methods." loading="lazy" width="1787" height="669" /></a>
+            <figcaption><strong>Static scenes · RealEstate10K.</strong> Novel views along target camera trajectories. Click the figure to inspect the full comparison.</figcaption>
+          </figure>
+          <figure class="results-figure reveal">
+            <a href="static/images/davis-main-exp.webp" target="_blank" rel="noopener" aria-label="Open the DAVIS comparison figure at full size"><img src="static/images/davis-main-exp.webp" alt="DAVIS qualitative comparison showing target camera paths and dynamic scene frames from h-control and seven camera-control baselines." loading="lazy" width="1800" height="655" /></a>
+            <figcaption><strong>Dynamic scenes · DAVIS.</strong> Camera control with moving subjects, compared across training-free and training-based methods.</figcaption>
+          </figure>
+        </div>
+        <p class="limitation reveal"><strong>Current limitation.</strong> Camera accuracy depends on the depth-warped guidance. Severe depth errors can produce an incorrect camera path even when the generated video remains visually plausible.</p>
+      </div>
+    </section>
+
+    <section id="bibtex-section">
+      <div class="wrap reveal">
+        <div class="section-head"><h2>BibTeX</h2><p>If you find this work useful, please cite:</p></div>
+        <div class="citation-block">
+          <button class="copy-btn" type="button" aria-label="Copy BibTeX citation">Copy</button>
+          <pre class="bibtex" id="bibtex">@inproceedings{wang2026hcontrol,
+  title     = {h-control: Training-Free Camera Control via Block-Conditional Gibbs Refinement},
+  author    = {Wang, Yuzhu and Ye, Xi and Su, Duo and Xu, Yangyang and Zhu, Jun},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2605.11871}
+}</pre>
+          <span class="sr-only" id="copy-status" role="status"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap"><span><em>h</em>-control · NeurIPS 2026</span><span><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv:2605.11871</a> · <a href="../../">Xi Ye</a></span></div>
+  </footer>
+  <script src="static/js/main.js?v=20261016"></script>
+</body>
+</html>
