@@ -1,10 +1,10 @@
-# h-control project page
+# GibbsLens project page
 
-Static project page for **h-control: Training-Free Camera Control via
+Static project page for **GibbsLens: Training-Free Camera Control via
 Block-Conditional Gibbs Refinement**, matching the SHIFT page's visual style.
 
 Deploy with the rest of this repository to GitHub Pages. The page is served at
-`/projects/h-control/` and requires no build step or package installation.
+`/projects/GibbsLens/` and requires no build step or package installation.
 
 ## Included assets
 
@@ -12,7 +12,7 @@ Deploy with the rest of this repository to GitHub Pages. The page is served at
 - `static/fonts/`: the Sora and Syne fonts and their OFL licenses, copied from SHIFT.
 - `static/images/`: five web-ready paper figures and a hero still from the supplied output video.
 - `static/videos/`: all five supplementary scenes, each split into the reference,
-  h-control, and seven baseline clips, with a matching poster for every clip.
+  GibbsLens, and seven baseline clips, with a matching poster for every clip.
 
 All rendered assets are ordinary files within this directory. There are no
 symlinks, absolute local paths, CDN dependencies, or runtime dependencies on the
@@ -25,11 +25,14 @@ grids without changing their timing. The page only loads the selected comparison
 videos when requested. The embedded method labels are retained. The DAVIS
 reference is the source video, not a ground-truth target-view video.
 
-The title background loops the h-control Patio Doors result (`real10k-2/ours.mp4`)
+The title background loops the GibbsLens Patio Doors result (`real10k-2/ours.mp4`)
 as a muted, inline MP4. Its dedicated `hero-patio-doors.mp4` copy crops the top
 80 pixels to remove the embedded method label, retaining the source timing;
 `hero-patio-doors.jpg` is its matching first-frame poster. The background has a
 play/pause button and starts paused when reduced motion is preferred.
+
+The checkerboard figure was re-exported from the source PDF with its method
+label updated to GibbsLens; the plotted results are unchanged.
 
 Figures and numerical results were taken from the supplied paper source;
 author information comes from its title block. Venue and public links follow

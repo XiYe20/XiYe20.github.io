@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>h-control — Training-Free Camera Control</title>
-  <meta name="description" content="h-control: Training-Free Camera Control via Block-Conditional Gibbs Refinement. NeurIPS 2026. Camera-controlled video generation without fine-tuning." />
-  <meta property="og:title" content="h-control — Training-Free Camera Control" />
+  <title>GibbsLens — Training-Free Camera Control</title>
+  <meta name="description" content="GibbsLens: Training-Free Camera Control via Block-Conditional Gibbs Refinement. NeurIPS 2026. Camera-controlled video generation without fine-tuning." />
+  <meta property="og:title" content="GibbsLens — Training-Free Camera Control" />
   <meta property="og:description" content="Block-conditional Gibbs refinement for camera-controlled video generation. Explore comparisons on RealEstate10K and DAVIS." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://xiye20.github.io/projects/h-control/" />
-  <meta property="og:image" content="https://xiye20.github.io/projects/h-control/static/images/hero-patio-doors.jpg" />
-  <link rel="canonical" href="https://xiye20.github.io/projects/h-control/" />
-  <link rel="stylesheet" href="static/css/style.css?v=20261016" />
+  <meta property="og:url" content="https://xiye20.github.io/projects/GibbsLens/" />
+  <meta property="og:image" content="https://xiye20.github.io/projects/GibbsLens/static/images/hero-patio-doors.jpg" />
+  <link rel="canonical" href="https://xiye20.github.io/projects/GibbsLens/" />
+  <link rel="stylesheet" href="static/css/style.css?v=20261022" />
   <noscript><style>.panel[hidden] { display: block !important; margin-top: 2rem; } [role="tablist"] { display: none; }</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#abstract">Skip to content</a>
   <header class="site-nav">
     <div class="wrap">
-      <a class="nav-brand" href="#top"><em>h</em>-control</a>
+      <a class="nav-brand" href="#top">GibbsLens</a>
       <nav class="nav-links" aria-label="Section">
         <a href="../../">Home</a>
         <a href="#abstract">Abstract</a>
@@ -38,13 +38,13 @@
         </video>
       </div>
       <div class="hero-content">
-        <p class="hero-brand"><em>h</em>-control</p>
+        <p class="hero-brand">GibbsLens</p>
         <h1 class="hero-title">Training-Free Camera Control via Block-Conditional Gibbs Refinement</h1>
         <p class="hero-lead">Steer the camera. Preserve the scene.<br />Refine a pretrained video model at inference time, with no fine-tuning.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://arxiv.org/pdf/2605.11871" target="_blank" rel="noopener">Paper PDF</a>
           <a class="btn btn-ghost" href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn btn-ghost" href="https://github.com/wangyuzhu6/hcontrol" target="_blank" rel="noopener">Code</a>
+          <a class="btn btn-ghost" href="https://github.com/wangyuzhu6/GibbsLens" target="_blank" rel="noopener">Code</a>
           <a class="btn btn-ghost" href="#gallery">Explore videos <span aria-hidden="true">↗</span></a>
           <a class="btn btn-ghost" href="#bibtex-section">BibTeX</a>
         </div>
@@ -61,7 +61,7 @@
       <div class="wrap reveal">
         <div class="section-head"><h2>Abstract</h2></div>
         <div class="abstract">
-          <p>Training-free camera control for pretrained flow-matching video generators is a partial-observation inverse problem: a depth-warped guidance video supplies noisy evidence on a subset of latent sites, which the sampler must reconcile with the pretrained prior. Existing methods struggle to balance trajectory adherence and visual quality, and heuristic guidance-strength tuning lacks robustness. We propose <strong><em>h</em>-control</strong>, which augments each outer hard-replacement guidance step with an inner-loop <strong>block-conditional pseudo-Gibbs refinement</strong> on the unobserved complement at the same noise level. Under the paper’s stated assumptions, this chain converges to the partial-observation conditional data law. To make refinement practical at video scale, we exploit conditional locality, partition the unobserved complement into 3D patches, and adaptively freeze patches as they converge. On RealEstate10K and DAVIS, <em>h</em>-control achieves the best FVD among all eight evaluated methods and matches or improves on every training-free baseline across all reported metrics.</p>
+          <p>Training-free camera control for pretrained flow-matching video generators is a partial-observation inverse problem: a depth-warped guidance video supplies noisy evidence on a subset of latent sites, which the sampler must reconcile with the pretrained prior. Existing methods struggle to balance trajectory adherence and visual quality, and heuristic guidance-strength tuning lacks robustness. We propose <strong>GibbsLens</strong>, which augments each outer hard-replacement guidance step with an inner-loop <strong>block-conditional pseudo-Gibbs refinement</strong> on the unobserved complement at the same noise level. Under the paper’s stated assumptions, this chain converges to the partial-observation conditional data law. To make refinement practical at video scale, we exploit conditional locality, partition the unobserved complement into 3D patches, and adaptively freeze patches as they converge. On RealEstate10K and DAVIS, GibbsLens achieves the best FVD among all eight evaluated methods and matches or improves on every training-free baseline across all reported metrics.</p>
         </div>
       </div>
     </section>
@@ -90,10 +90,10 @@
           </article>
         </div>
         <figure class="method-figure method-wide reveal">
-          <a href="static/images/checkerboard-toy-example.webp" target="_blank" rel="noopener" aria-label="Open the checkerboard experiment figure at full size">
-            <img src="static/images/checkerboard-toy-example.webp" alt="2D checkerboard: the ground-truth conditional has two modes; h-control concentrates samples in both modes, while DPS and TFG-UGD spread samples along the observation constraint." loading="lazy" width="1796" height="494" />
+          <a href="static/images/checkerboard-toy-example-gibbslens.webp" target="_blank" rel="noopener" aria-label="Open the checkerboard experiment figure at full size">
+            <img src="static/images/checkerboard-toy-example-gibbslens.webp" alt="2D checkerboard: the ground-truth conditional has two modes; GibbsLens concentrates samples in both modes, while DPS and TFG-UGD spread samples along the observation constraint." loading="lazy" width="1796" height="498" />
           </a>
-          <figcaption><strong>Why refine?</strong> In the 2D checkerboard experiment, <em>h</em>-control recovers both conditional modes, with a 98% posterior-hit rate compared with 79% for DPS and 89% for TFG-UGD.</figcaption>
+          <figcaption><strong>Why refine?</strong> In the 2D checkerboard experiment, GibbsLens recovers both conditional modes, with a 98% posterior-hit rate compared with 79% for DPS and 89% for TFG-UGD.</figcaption>
         </figure>
         <div class="method-grid method-evidence">
           <figure class="method-figure reveal">
@@ -138,7 +138,7 @@
                   <tr class="group-start"><th scope="row">TrajectoryAttention<sup>†</sup></th><td>616.81</td><td>18.0606</td><td>0.8492</td><td>3.2817</td><td>0.45 ± 0.20</td><td><strong>0.64</strong> ± 0.16</td><td>97.10</td><td>87.23</td></tr>
                   <tr><th scope="row">TrajectoryCrafter<sup>†</sup></th><td>253.27</td><td>4.1568</td><td><strong>0.4235</strong></td><td>0.9794</td><td>0.43 ± 0.17</td><td>0.63 ± 0.16</td><td>97.71</td><td>91.50</td></tr>
                   <tr><th scope="row">ReCamMaster<sup>†</sup></th><td>299.33</td><td>5.1924</td><td>0.4627</td><td>1.6436</td><td>0.59 ± 0.15</td><td>0.53 ± 0.15</td><td>98.21</td><td>89.34</td></tr>
-                  <tr class="is-ours group-start"><th scope="row"><em>h</em>-control (Ours)</th><td><strong>129.25</strong></td><td><strong>3.4920</strong></td><td>0.4321</td><td><strong>0.9483</strong></td><td><strong>0.41</strong> ± 0.18</td><td>0.62 ± 0.17</td><td><strong>98.52</strong></td><td><strong>93.80</strong></td></tr>
+                  <tr class="is-ours group-start"><th scope="row">GibbsLens (Ours)</th><td><strong>129.25</strong></td><td><strong>3.4920</strong></td><td>0.4321</td><td><strong>0.9483</strong></td><td><strong>0.41</strong> ± 0.18</td><td>0.62 ± 0.17</td><td><strong>98.52</strong></td><td><strong>93.80</strong></td></tr>
                 </tbody>
               </table>
             </div>
@@ -157,11 +157,11 @@
                   <tr class="group-start"><th scope="row">TrajectoryAttention<sup>†</sup></th><td>837.37</td><td>18.3749</td><td>3.6871</td><td>7.2034</td><td>93.88</td><td>74.23</td></tr>
                   <tr><th scope="row">TrajectoryCrafter<sup>†</sup></th><td>576.30</td><td>7.3827</td><td>2.1045</td><td>4.7158</td><td>95.86</td><td>83.21</td></tr>
                   <tr><th scope="row">ReCamMaster<sup>†</sup></th><td>670.42</td><td><strong>4.9770</strong></td><td><strong>0.6352</strong></td><td><strong>1.7271</strong></td><td>95.39</td><td>85.06</td></tr>
-                  <tr class="is-ours group-start"><th scope="row"><em>h</em>-control (Ours)</th><td><strong>356.73</strong></td><td>6.8832</td><td>1.8907</td><td>4.2285</td><td><strong>97.45</strong></td><td><strong>90.34</strong></td></tr>
+                  <tr class="is-ours group-start"><th scope="row">GibbsLens (Ours)</th><td><strong>356.73</strong></td><td>6.8832</td><td>1.8907</td><td>4.2285</td><td><strong>97.45</strong></td><td><strong>90.34</strong></td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="table-note">84 videos: three controlled camera trajectories on each of 28 dynamic scenes. <strong>Bold</strong>: best across all methods. <sup>†</sup>Training-based. ReCamMaster leads on trajectory error; <em>h</em>-control leads on FVD and both CLIP scores.</p>
+            <p class="table-note">84 videos: three controlled camera trajectories on each of 28 dynamic scenes. <strong>Bold</strong>: best across all methods. <sup>†</sup>Training-based. ReCamMaster leads on trajectory error; GibbsLens leads on FVD and both CLIP scores.</p>
           </div>
         </div>
         <details class="ablation reveal">
@@ -175,7 +175,7 @@
                 <tr><th scope="row">+ Pseudo-Gibbs refinement</th><td>382.26</td><td>7.6343</td><td>89.71</td></tr>
                 <tr><th scope="row">+ Refinement + Polyak readout</th><td>375.67</td><td>7.6051</td><td>89.49</td></tr>
                 <tr><th scope="row">+ Refinement + patch-freeze gate</th><td>382.26</td><td>7.8734</td><td>89.62</td></tr>
-                <tr class="is-ours"><th scope="row">Full <em>h</em>-control</th><td><strong>356.73</strong></td><td><strong>6.8832</strong></td><td><strong>90.34</strong></td></tr>
+                <tr class="is-ours"><th scope="row">Full GibbsLens</th><td><strong>356.73</strong></td><td><strong>6.8832</strong></td><td><strong>90.34</strong></td></tr>
               </tbody>
             </table>
           </div>
@@ -228,7 +228,7 @@
               <video id="video-reference" controls muted playsinline preload="none" poster="static/videos/real10k-2/reference.jpg" aria-labelledby="reference-label" width="960" height="540" src="static/videos/real10k-2/reference.mp4"></video>
             </figure>
             <figure class="video-card video-card--ours">
-              <figcaption id="ours-label"><em>h</em>-control <span>Ours · training-free</span></figcaption>
+              <figcaption id="ours-label">GibbsLens <span>Ours · training-free</span></figcaption>
               <video id="video-ours" controls muted playsinline preload="none" poster="static/videos/real10k-2/ours.jpg" aria-labelledby="ours-label" width="960" height="540" src="static/videos/real10k-2/ours.mp4"></video>
             </figure>
             <figure class="video-card">
@@ -252,7 +252,7 @@
             <figcaption><strong>Static scenes · RealEstate10K.</strong> Novel views along target camera trajectories. Click the figure to inspect the full comparison.</figcaption>
           </figure>
           <figure class="results-figure reveal">
-            <a href="static/images/davis-main-exp.webp" target="_blank" rel="noopener" aria-label="Open the DAVIS comparison figure at full size"><img src="static/images/davis-main-exp.webp" alt="DAVIS qualitative comparison showing target camera paths and dynamic scene frames from h-control and seven camera-control baselines." loading="lazy" width="1800" height="655" /></a>
+            <a href="static/images/davis-main-exp.webp" target="_blank" rel="noopener" aria-label="Open the DAVIS comparison figure at full size"><img src="static/images/davis-main-exp.webp" alt="DAVIS qualitative comparison showing target camera paths and dynamic scene frames from GibbsLens and seven camera-control baselines." loading="lazy" width="1800" height="655" /></a>
             <figcaption><strong>Dynamic scenes · DAVIS.</strong> Camera control with moving subjects, compared across training-free and training-based methods.</figcaption>
           </figure>
         </div>
@@ -265,8 +265,8 @@
         <div class="section-head"><h2>BibTeX</h2><p>If you find this work useful, please cite:</p></div>
         <div class="citation-block">
           <button class="copy-btn" type="button" aria-label="Copy BibTeX citation">Copy</button>
-          <pre class="bibtex" id="bibtex">@inproceedings{wang2026hcontrol,
-  title     = {h-control: Training-Free Camera Control via Block-Conditional Gibbs Refinement},
+          <pre class="bibtex" id="bibtex">@inproceedings{wang2026gibbslens,
+  title     = {{GibbsLens}: Training-Free Camera Control via Block-Conditional Gibbs Refinement},
   author    = {Wang, Yuzhu and Ye, Xi and Su, Duo and Xu, Yangyang and Zhu, Jun},
   booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
   year      = {2026},
@@ -278,8 +278,8 @@
     </section>
   </main>
   <footer class="site-footer">
-    <div class="wrap"><span><em>h</em>-control · NeurIPS 2026</span><span><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv:2605.11871</a> · <a href="../../">Xi Ye</a></span></div>
+    <div class="wrap"><span>GibbsLens · NeurIPS 2026</span><span><a href="https://arxiv.org/abs/2605.11871" target="_blank" rel="noopener">arXiv:2605.11871</a> · <a href="../../">Xi Ye</a></span></div>
   </footer>
-  <script src="static/js/main.js?v=20261016"></script>
+  <script src="static/js/main.js?v=20261022"></script>
 </body>
 </html>

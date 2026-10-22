@@ -737,7 +737,7 @@ tbody tr.is-ours {
   }
 }
 
-/* h-control: retain SHIFT's visual language and adapt it to camera control. */
+/* GibbsLens: retain SHIFT's visual language and adapt it to camera control. */
 [hidden] { display: none !important; }
 section[id] { scroll-margin-top: 5rem; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
@@ -785,7 +785,6 @@ section[id] { scroll-margin-top: 5rem; }
 }
 .hero-content { position: relative; z-index: 1; }
 .hero-brand { font-size: clamp(3.5rem, 11vw, 8rem); }
-.hero-brand em, .nav-brand em { font-family: Georgia, serif; font-weight: 400; }
 .hero-title { max-width: 35ch; text-wrap: balance; }
 .hero-lead { max-width: 55ch; }
 .authors a { color: inherit; }
@@ -861,7 +860,7 @@ select {
   .site-nav .wrap { display: block; padding-block: 0.55rem; }
   .nav-links { display: flex; flex-wrap: nowrap; gap: 1rem; overflow-x: auto; padding-top: 0.35rem; font-size: 0.75rem; }
   .hero { min-height: calc(100svh - 5.4rem); padding-top: 3.8rem; }
-  .hero-brand { font-size: clamp(3rem, 15vw, 5rem); }
+  .hero-brand { font-size: clamp(2rem, 10vw, 3.75rem); }
   .hero-title { max-width: 30ch; font-size: 1.35rem; }
   .hero-lead { font-size: 0.92rem; }
   .authors { font-size: 0.84rem; }

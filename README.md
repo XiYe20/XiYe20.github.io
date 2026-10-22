@@ -10,7 +10,7 @@ Personal homepage and paper project pages, served as static HTML via GitHub Page
 ├── css/style.css           # Homepage styles
 ├── assets/                 # Homepage assets (profile photo, etc.)
 ├── projects/
-│   ├── h-control/          # Camera control paper -> /projects/h-control/
+│   ├── GibbsLens/          # Camera control paper -> /projects/GibbsLens/
 │   └── SHIFT/              # Motion alignment paper -> /projects/SHIFT/
 │       ├── index.html
 │       └── static/         # css / js / images for this paper
